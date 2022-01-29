@@ -1,0 +1,15 @@
+input{
+width: 210px;
+background-color: black;
+color: white;
+text-align: right;
+}
+button{
+width:50px;
+}
+button.last1 {
+width: 106px;
+}
+button.last2{
+width: 106px;
+}
