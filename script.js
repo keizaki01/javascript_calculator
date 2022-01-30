@@ -30,32 +30,58 @@ function append(selected){
     }
   }
   
-  
-  
   function removeDisabled(){
-    if(operater.includes(selected)){
+    if(number.includes(selected) && dot.includes(display) === false){
     document.getElementById("point").disabled=false;
     }
-    else if(number.includes(selected)){
-    document.getElementById("point").disabled=false;
-    }
-    else if(zero.includes(selected)){
+    else if(zero.includes(selected) && dot.includes(display) === false){
     document.getElementById("point").disabled=false;
     }
   }
   
   function setDisabled(){
-    if(dot.includes(selected))
+    if(dot.includes(display) === true)
     {document.getElementById("point").disabled=true;
-    }else if(operater.includes(selected)){
+    }
+    else if(operater.includes(selected)){
     document.getElementById("zerozero").disabled=true;
     document.getElementById("point").disabled=true;
     }
   }
   
+  
   zero_removeDisabled()
   removeDisabled()
   setDisabled()
+  
+  function for_dot(){
+    if(dot.includes(lastString) && number.includes(selected)){
+    display.value = display.value ;
+    }
+    else if(dot.includes(lastString) && zero.includes(selected)){
+    display.value = display.value + selected;
+    }
+    else if(zero.includes(lastString) && number.includes(selected)){
+    display.value = display.value ;
+    }
+    else if(zero.includes(firstString) && number.includes(selected)){
+    display.value = 0 + display.value ;
+    }
+    else if(operater.includes(lastString) && number.includes(selected)){
+    display.value = 0 + display.value;
+    }
+    else if(number.includes(lastString) && number.includes(selected)){
+    display.value = 0 + display.value;
+    }
+    else if(number.includes(firstString) && number.includes(selected)){
+    display.value = display.value.slice(1);
+    }
+    else if(operater.includes(lastString) && zero.includes(selected)){
+    display.value = display.value + selected;
+    }
+  }
+   
+  for_dot()
   
   if(operater.includes(lastString) && operater.includes(selected)){
     display.value = display.value.slice(0,-1) + selected;
@@ -66,6 +92,7 @@ function append(selected){
   else if(zero.includes(firstString) && number.includes(selected)){
     display.value = display.value.slice(1) + selected;
   }
+  
   else if(zero.includes(firstString) && dot.includes(secondString)){
     display.value = display.value + selected;
   }
