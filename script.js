@@ -1,21 +1,95 @@
 function update(selected){
-  document.getElementById("display").value = selected
+  const display = document.getElementById("display").value = selected
+  const dot = ["."];
+  const ac = ["0"];
+  
+  function ac_setDisabled(){
+    if(ac.includes("0")){
+    document.getElementById("point").disabled=true;
+    document.getElementById("zerozero").disabled=true;
+    }
+  }
+  
+  ac_setDisabled()
 }
 
 function append(selected){
-  const number = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "00"];
-  const operater = ["+", "-", "*", "/", "."];
+  const number = ["1", "2", "3", "4", "5", "6", "7", "8", "9",];
+  const zero = ["0"];
+  const operater = ["+", "-", "*", "/"];
+  const dot = ["."];
+  const ac = ["AC"];
   const display = document.getElementById("display")
   const lastString = display.value.slice(-1)
+  const firstString = display.value.slice(0,1)
+  const secondString = display.value.slice(0,2)
+  
+  function zero_removeDisabled(){
+    if(number.includes(selected)){
+    document.getElementById("zerozero").disabled=false;
+    }
+  }
+  
+  
+  
+  function removeDisabled(){
+    if(operater.includes(selected)){
+    document.getElementById("point").disabled=false;
+    }
+    else if(number.includes(selected)){
+    document.getElementById("point").disabled=false;
+    }
+    else if(zero.includes(selected)){
+    document.getElementById("point").disabled=false;
+    }
+  }
+  
+  function setDisabled(){
+    if(dot.includes(selected))
+    {document.getElementById("point").disabled=true;
+    }else if(operater.includes(selected)){
+    document.getElementById("zerozero").disabled=true;
+    document.getElementById("point").disabled=true;
+    }
+  }
+  
+  zero_removeDisabled()
+  removeDisabled()
+  setDisabled()
+  
   if(operater.includes(lastString) && operater.includes(selected)){
     display.value = display.value.slice(0,-1) + selected;
-  }else{
+  }
+  else if(operater.includes(firstString) && number.includes(selected)){
+    display.value = display.value.slice(1) + selected;
+  }
+  else if(zero.includes(firstString) && number.includes(selected)){
+    display.value = display.value.slice(1) + selected;
+  }
+  else if(zero.includes(firstString) && dot.includes(secondString)){
+    display.value = display.value + selected;
+  }
+  else if(zero.includes(firstString) && zero.includes(selected)){
+    display.value = display.value.slice(0,-1) + selected;
+  }else if(dot.includes(lastString) && operater.includes(selected)){
+    display.value = display.value.slice(0,-1);
+  }
+  else if(operater.includes(firstString) && dot.includes(selected)){
+    display.value = display.value.slice(0,-1);
+  }
+ 
+  else{
     display.value += selected
   }
-}
+  }
+
 
 function calc(){
   const process = document.getElementById("display").value
   const total = new Function( `return `+process)
   update(total())
 }
+
+
+
+

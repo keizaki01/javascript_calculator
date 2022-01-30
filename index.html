@@ -34,14 +34,14 @@
   <tr class="fourthline">
    <td>
     <button onclick="append(`0`)">0</button>
-    <button onclick="append(`00`)">00</button>
-    <button onclick="append(`.`)">.</button>
+    <button onclick="append(`00`)" id="zerozero" disabled>00</button>
+    <button onclick="append(`.`)" id="point" disabled>.</button>
     <button onclick="append(`/`)">/</button>
    </td>
   </tr>
   <tr class="fifthline">
    <td>
-    <button class="last1" onclick="update(``)">AC</button>
+    <button class="last1" onclick="update(`0`)" id="ac">AC</button>
     <button class="last2" onclick="calc()">=</button>
    </td>
   </tr>
